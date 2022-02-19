@@ -11,8 +11,8 @@ let y1 = 20;
 
 // game details
 var speed = 8; // character speed
-let ballSpeed = 2;
 let score = 0;
+let ballSpeed = 5 + score;
 let ballsize = 20;
 
 let leftPressed = false;
@@ -56,6 +56,7 @@ function drawScore() {
   ctx.fillStyle = "White";
   ctx.fillText("Level: " + score + "[" + ballSpeed + "]", 325, 50);
 }
+
 function gameOver() {
   if (y1 > 550) {
   ctx.font = "64px Monospace";
@@ -130,6 +131,9 @@ function keyDown(event) {
   // left
   if (event.keyCode == 65)
     leftPressed = true;
+  if (event.keyCode == 32){
+    gameReset();
+  }
 }
 
 function keyUp(event) {
@@ -152,9 +156,22 @@ if ((y1 === (y - 40)) && (x1 > (x - 4)) && (x1 < (x + 24))) {
 
 function ballReset() {
 if (y1 < 10) {
-  ballSpeed = ballSpeed + 1;
+  ballSpeed = Math.abs(ballSpeed);
   x1 = Math.random() * 490;
   }
+}
+
+function gameReset() {
+  x1 = Math.random() * 490;
+  y1 = 20;
+  speed = 8; // character speed
+  score = 0;
+  ballSpeed = 5 + score;
+  ballsize = 20;
+  leftPressed = false;
+  rightPressed = false;
+  x = 240
+  y = 530
 }
 
 // event listeners
