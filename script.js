@@ -10,7 +10,7 @@ let x1 = Math.random() * 490;
 let y1 = 20;
 
 // game details
-var speed = 5; // character speed
+var speed = 8; // character speed
 let ballSpeed = 2;
 let score = 0;
 let ballsize = 20;
@@ -27,9 +27,10 @@ function drawGame() {
   boundaryCheck();
   drawCharacter();
   drawBall();
-  y1 = y1 + ballSpeed + score;
+  y1 = y1 + ballSpeed;
   drawScore();
   collisionCheck();
+  gameOver();
 }
 
 function boundaryCheck() {
@@ -53,7 +54,15 @@ function inputs() {
 function drawScore() {
   ctx.font = "24px Monospace";
   ctx.fillStyle = "White";
-  ctx.fillText("Level : " + score, 350, 50);
+  ctx.fillText("Level: " + score + "[" + ballSpeed + "]", 325, 50);
+}
+function gameOver() {
+  if (y1 > 550) {
+  ctx.font = "64px Monospace";
+  ctx.fillStyle = "Red";
+  ctx.fillText("Game Over", 95, 300)
+  ctx.fillText("Your Score:" + score, 41, 365);
+  }
 }
 
 function drawCharacter() {
@@ -84,7 +93,7 @@ function drawCharacter() {
   ctx.fill();
   
   // body
-  ctx.fillStyle = "Orange"
+  ctx.fillStyle = "Blue"
   ctx.beginPath();
   ctx.rect(x, y, 20, 30);
   ctx.fill();
@@ -136,14 +145,14 @@ function keyUp(event) {
 
 function collisionCheck() {
 if ((y1 === (y - 40)) && (x1 > (x - 4)) && (x1 < (x + 24))) {
-  ballSpeed = -2;
+  ballSpeed = -(ballSpeed);
   score = score + 1;
   }
 }
 
 function ballReset() {
 if (y1 < 10) {
-  ballSpeed = 2 + score;
+  ballSpeed = ballSpeed + 1;
   x1 = Math.random() * 490;
   }
 }
