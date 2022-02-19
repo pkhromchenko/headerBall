@@ -14,6 +14,7 @@ var speed = 8; // character speed
 let score = 0;
 let ballSpeed = 5 + score;
 let ballsize = 20;
+let highScore = 0;
 
 let leftPressed = false;
 let rightPressed = false;
@@ -55,14 +56,25 @@ function drawScore() {
   ctx.font = "24px Monospace";
   ctx.fillStyle = "White";
   ctx.fillText("Level: " + score + "[" + ballSpeed + "]", 325, 50);
+  ctx.fillText("High Score: " + highScore, 311, 80);
+  if (score > highScore) {
+    highScore = score
+  }
 }
 
 function gameOver() {
   if (y1 > 550) {
   ctx.font = "64px Monospace";
   ctx.fillStyle = "Red";
+  ctx.strokeStyle = "black"
+  ctx.lineWidth = 2
+  ctx.strokeText("Game Over", 95, 300);
+  ctx.strokeText("Your Score:" + score, 41, 365);
   ctx.fillText("Game Over", 95, 300)
   ctx.fillText("Your Score:" + score, 41, 365);
+  ctx.font = "28px Monospace";
+  ctx.strokeText("Press [Space] to Reset", 85, 410);
+  ctx.fillText("Press [Space] to Reset", 85, 410);
   }
 }
 
