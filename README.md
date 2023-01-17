@@ -1,3 +1,3 @@
 # HeaderBall
 
-My first ever game, made through HTML/CSS/JS. Fully playable at https://acclaimeddarktests.lovcraft.repl.co
+My first ever game, made through HTML/CSS/JS. Playable at https://acclaimeddarktests.lovcraft.repl.co
